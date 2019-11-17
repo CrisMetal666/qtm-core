@@ -1,7 +1,10 @@
 package com.jmtm.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -18,22 +21,28 @@ public class RutaController {
 
 	@Autowired
 	private RutaService service;
-	
+
 	@PostMapping
 	public void crear(@RequestBody Ruta ruta) {
-		
+
 		service.registrar(ruta);
 	}
-	
+
 	@PutMapping
 	public void actualizar(@RequestBody Ruta ruta) {
-		
+
 		service.actualizar(ruta);
 	}
-	
+
 	@DeleteMapping("/{id}")
 	public void eliminar(@PathVariable Integer id) {
-		
+
 		service.eliminar(id);
+	}
+
+	@GetMapping
+	public List<Ruta> buscarTodos() {
+
+		return service.buscarTodos();
 	}
 }

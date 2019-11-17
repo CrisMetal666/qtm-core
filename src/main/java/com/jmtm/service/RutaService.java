@@ -1,5 +1,6 @@
 package com.jmtm.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import javax.persistence.EntityNotFoundException;
@@ -54,5 +55,10 @@ public class RutaService {
 		}
 		
 		repo.deleteById(id);
+	}
+	
+	public List<Ruta> buscarTodos() {
+		
+		return repo.findAll();
 	}
 }
