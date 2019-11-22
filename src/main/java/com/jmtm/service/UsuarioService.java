@@ -1,5 +1,6 @@
 package com.jmtm.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,5 +63,10 @@ public class UsuarioService {
 		Optional<Integer> id = repo.buscarIdPorIdentificacion(indentificacion);
 
 		return id.isPresent();
+	}
+	
+	public List<Usuario> buscarProovedores() {
+		
+		return repo.buscarProovedores(Rol.ROLE_PROOVEDOR);
 	}
 }

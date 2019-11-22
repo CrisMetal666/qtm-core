@@ -27,11 +27,11 @@ public class MateriaPrima {
 	@Column(name = "precio")
 	private Integer precio;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "usuario_id")
 	private Usuario usuario;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "ruta_id")
 	private Ruta ruta;
 

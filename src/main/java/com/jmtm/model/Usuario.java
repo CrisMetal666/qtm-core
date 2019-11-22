@@ -36,8 +36,10 @@ public class Usuario {
 	@Column(name = "celular")
 	private String celular;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "rol_id")
 	private Rol rol;
+	
+	
 
 }

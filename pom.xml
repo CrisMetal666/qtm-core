@@ -11,7 +11,7 @@
 	<groupId>com.jmtm</groupId>
 	<artifactId>qtm-core</artifactId>
 	<version>1.0.0</version>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 	<name>qtm-core</name>
 	<description>Demo project for Spring Boot</description>
 
