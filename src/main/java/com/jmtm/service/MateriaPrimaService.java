@@ -1,7 +1,9 @@
 package com.jmtm.service;
 
 import java.util.List;
+import java.util.Optional;
 
+import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,5 +37,16 @@ public class MateriaPrimaService {
 	public List<MateriaPrima> buscarPorRuta(Integer ruta) {
 
 		return repo.buscarPorRuta(ruta);
+	}
+	
+	public MateriaPrima buscarPorUsuarioId(int id) {
+		
+		Optional<MateriaPrima> materiaPrima = repo.findById(id);
+		
+		if(!materiaPrima.isPresent()) {
+			throw new EntityNotFoundException("No existe el usuario con el id -> " +id);
+		}
+		
+		return materiaPrima.get();
 	}
 }

@@ -37,4 +37,10 @@ public class MateriaPrimaController {
 		
 		return service.buscarPorRuta(ruta);
 	}
+	
+	@GetMapping(path = "usuario/{id}")
+	public MateriaPrima buscarPorUsuarioId(@PathVariable Integer id) {
+		
+		return service.buscarPorUsuarioId(id);
+	}
 }
