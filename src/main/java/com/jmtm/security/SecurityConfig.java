@@ -53,11 +53,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	public void configure(AuthenticationManagerBuilder auth) throws Exception {
 
-		String sqlUser = "select * from (select correo as username, clave as password, "
-				+ "true as 'enabled' from usuario) as users where username = ?";
+		String sqlUser = "select * from (select identificacion as username, clave as password," + 
+				"true as 'enabled' from usuario) as users where username = ?";
 
-		String sqlRole = "select * from (select u.correo as username, r.nombre as authority "
-				+ "from usuario u inner join rol r on r.id = u.rol_id) as authorities where username = ?";
+		String sqlRole = "select * from (select u.identificacion as username, r.nombre as authority " + 
+				"from usuario u inner join rol r on r.id = u.rol_id) as authorities where username = ?";
 
 		auth.jdbcAuthentication().dataSource(dataSource).passwordEncoder(bcrypt).usersByUsernameQuery(sqlUser)
 				.authoritiesByUsernameQuery(sqlRole);
