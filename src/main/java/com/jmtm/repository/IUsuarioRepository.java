@@ -16,4 +16,7 @@ public interface IUsuarioRepository extends JpaRepository<Usuario, Integer> {
 	
 	@Query("select u from Usuario u where u.rol.id = :rol")
 	List<Usuario> buscarProovedores(@Param("rol") Integer rol);
+	
+	@Query("select u from Usuario u where u.id = :id and u.rol.id = :rol")
+	Optional<Usuario> buscarPorIdYRolId(@Param("id") Integer id, @Param("rol") Integer rolId);
 }

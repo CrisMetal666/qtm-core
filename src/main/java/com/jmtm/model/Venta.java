@@ -30,7 +30,7 @@ public class Venta {
 	private Integer cantidad;
 
 	@JsonSerialize(using = ToStringSerializer.class)
-	@Column(name = "fecha", nullable = false)
+	@Column(name = "fecha", nullable = false, updatable = false)
 	private LocalDate fecha;
 	
 	@ManyToOne(fetch = FetchType.LAZY)

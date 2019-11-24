@@ -3,6 +3,8 @@ package com.jmtm.service;
 import java.util.List;
 import java.util.Optional;
 
+import javax.persistence.EntityNotFoundException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -68,5 +70,24 @@ public class UsuarioService {
 	public List<Usuario> buscarProovedores() {
 		
 		return repo.buscarProovedores(Rol.ROLE_PROOVEDOR);
+	}
+	
+	
+	public void eliminarProovedor(int id) {
+		
+		Optional<Usuario> usuario = repo.buscarPorIdYRolId(id, Rol.ROLE_PROOVEDOR);
+		
+		if(!usuario.isPresent()) {
+			throw new EntityNotFoundException("No existe el proovedor con el id -> " + id);
+		}
+		
+		repo.deleteById(id);
+	}
+	
+	public boolean existeProovedor(Integer id) {
+		
+		Optional<Usuario> usuario = repo.buscarPorIdYRolId(id, Rol.ROLE_PROOVEDOR);
+		
+		return usuario.isPresent();
 	}
 }
