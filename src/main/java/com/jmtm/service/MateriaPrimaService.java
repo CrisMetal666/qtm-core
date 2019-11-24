@@ -41,7 +41,7 @@ public class MateriaPrimaService {
 	
 	public MateriaPrima buscarPorUsuarioId(int id) {
 		
-		Optional<MateriaPrima> materiaPrima = repo.findById(id);
+		Optional<MateriaPrima> materiaPrima = repo.buscarPorUsuarioId(id);
 		
 		if(!materiaPrima.isPresent()) {
 			throw new EntityNotFoundException("No existe el usuario con el id -> " +id);
