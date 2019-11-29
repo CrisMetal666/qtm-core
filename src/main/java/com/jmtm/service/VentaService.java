@@ -66,6 +66,7 @@ public class VentaService {
 			String proovedorNombre = "";
 			int totalDinero = 0;
 			String intervaloTiempo = String.format("%s - %s", fechaLunes.toString(), fechaActual.toString());
+			int totalItems = 0;
 
 			List<Venta> lstVenta = repo.buscarVentaProovedorSemana(proovedorId, fechaLunes, fechaActual);
 			MateriaPrima materiaPrima = materiaPrimaService.buscarPorUsuarioId(proovedorId);
@@ -74,10 +75,15 @@ public class VentaService {
 				
 				proovedorNombre = venta.getUsuario().getNombre() + " " + venta.getUsuario().getApellido();
 				totalDinero += venta.getCantidad() * materiaPrima.getPrecio();
-				
+				totalItems += venta.getCantidad();
 			}
 
-			ProovedorSemana venta = new ProovedorSemana(proovedorNombre, intervaloTiempo, totalDinero, materiaPrima.getNombre());
+			ProovedorSemana venta = new ProovedorSemana();
+			venta.setProovedorNombre(proovedorNombre);
+			venta.setIntervaloTiempo(intervaloTiempo);
+			venta.setTotalDinero(totalDinero);
+			venta.setMateriaPrima(materiaPrima.getNombre());
+			venta.setTotalItems(totalItems);
 			
 			lstProovedorVenta.add(venta);
 			
@@ -93,18 +99,21 @@ public class VentaService {
 		List<Venta> lstVenta = repo.buscarVentasDelDia(dia);
 
 		int totalDinero = 0;
+		int totalItems = 0;
 
 		for (Venta venta : lstVenta) {
 
 			MateriaPrima materiaPrima = materiaPrimaService.buscarPorUsuarioId(venta.getUsuario().getId());
 
 			totalDinero += venta.getCantidad() * materiaPrima.getPrecio();
+			totalItems+= venta.getCantidad();
 		}
 
 		ProovedorSemana ventasDelDia = new ProovedorSemana();
 
 		ventasDelDia.setIntervaloTiempo(dia.toString());
 		ventasDelDia.setTotalDinero(totalDinero);
+		ventasDelDia.setTotalItems(totalItems);
 
 		return ventasDelDia;
 	}
@@ -125,7 +134,7 @@ public class VentaService {
 		ProovedorSemana ventasDelDia = new ProovedorSemana();
 
 		ventasDelDia.setIntervaloTiempo(dia.toString());
-		ventasDelDia.setTotalDinero(cantidadDeArticulos);
+		ventasDelDia.setTotalItems(cantidadDeArticulos);
 
 		return ventasDelDia;
 	}

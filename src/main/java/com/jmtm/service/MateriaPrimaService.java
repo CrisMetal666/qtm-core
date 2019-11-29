@@ -28,6 +28,15 @@ public class MateriaPrimaService {
 
 		repo.save(materiaPrima);
 	}
+	
+	public void actualizar(MateriaPrima materiaPrima) {
+		
+		if(materiaPrima.getId() == null) {
+			throw new NullPointerException("El id de la materia prima es nulo");
+		}
+		
+		repo.save(materiaPrima);
+	}
 
 	public List<MateriaPrima> buscarTodo() {
 
